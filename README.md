@@ -1,4 +1,6 @@
-# README
+# cl-clone
+
+> A nice craigslist clone using Ruby on Rails (my first project in RoR!).
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
