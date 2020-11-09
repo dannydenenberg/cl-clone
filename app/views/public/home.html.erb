@@ -1,0 +1,13 @@
+<div class="row">
+  <% @categories.each do |category| %>
+    <div class="col-4 mb-4">
+      <p><strong><%= link_to category.name, category_path(category), class: "text-dark" %></strong></p>
+      <%# right now, i am limiting each parent to have 10 of their categories shown. %>
+        <% category.subcategories.limit(10).each do |subcategory| %>
+          <div class="subcat">
+            <%= link_to subcategory.name, category_path(subcategory) %>
+          </div>
+        <% end %>
+    </div>
+  <% end %>
+</div>

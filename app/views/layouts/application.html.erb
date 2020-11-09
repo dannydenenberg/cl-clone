@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CraigslistClone</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="header">
+      <%= render "layouts/breadcrumb_nav"  %>
+    </header>
+    <p class="notice"><%= notice %></p>
+    <div class="container">
+      <div class="row">
+
+
+      <div class="col-3">
+
+        <p>
+          <h3>
+            <
+            <%= link_to "craigslist clone", root_path -%>
+          </h3>
+        </p>
+
+        <%= link_to "my account", new_account_session_path unless account_signed_in? %> <br/>
+
+        <%= render "categories/category_sidebar" if controller.controller_name == "categories" %>
+        <%= link_to "Create new post", new_post_path if controller.controller_name == "public" %>
+
+        <% if is_home? %>
+          <div class="nav-pages">
+            <p><%= link_to "help, faqs, abuse, legal", faqs_path %></p>
+            <p><%= link_to "avoid scams and fraud", scams_path %></p>
+            <p><%= link_to "personal safety tips", safety_path %></p>
+            <p><%= link_to "terms of use", terms_path %></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-9">
+      <%= yield %>
+      </div>
+      </div>
+    </div>
+
+  </body>
+</html>

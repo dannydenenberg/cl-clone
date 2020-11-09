@@ -1,0 +1,33 @@
+<div class="inner">
+    <% if account_signed_in? %>
+      <%= link_to "sign out", destroy_account_session_path, method: :delete, class: "pull-right" %>
+
+    <% else %>
+      <%= link_to "my account", root_path, class: "pull-right" %>
+    <% end %>
+
+
+  <%= link_to "post", new_post_path, class: "pull-right" %>
+
+  <%# this is where "uno" or "exeter" will go %>
+  <%= link_to "home", root_path %> >>
+
+  <% if @post.present? && !@post.new_record?
+    category = @post.category
+    parent = category.parent
+  %>
+  <% if parent.present? %>
+    <%= link_to parent.name, category_path(parent) %> >>
+  <% end %>
+
+    <%= link_to category.name, category_path(category) %> >>
+    <%= @post.title %>
+  <% elsif @category.present?
+    parent = @category.parent
+  %>
+    <% if parent.present? %>
+      <%= link_to parent.name, category_path(parent) %> >>
+    <% end %>
+    <%= @category.name %>
+  <% end %>
+</div>
