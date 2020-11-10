@@ -69,7 +69,8 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      # find the category using its "url" field for seo friendly urls.
+      @category = Category.find_by_url(params[:url])
     end
 
     # Only allow a list of trusted parameters through.

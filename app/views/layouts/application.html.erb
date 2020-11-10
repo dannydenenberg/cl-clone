@@ -10,10 +10,16 @@
   </head>
 
   <body>
-    <header class="header">
+    <header id="header">
       <%= render "layouts/breadcrumb_nav"  %>
     </header>
-    <p class="notice"><%= notice %></p>
+
+    <%# Our app is using a library called "toastr" to style and manage these notifications. %>
+    <!-- Notice is where messages like "post created successfully" or "logged in successfully" are put. -->
+    <% unless notice.nil? %>
+      <div class="alert alert-primary notice" role="alert"><%= notice %></div>
+    <% end %>
+
     <div class="container">
       <div class="row">
 
@@ -22,18 +28,17 @@
 
         <p>
           <h3>
-            <
-            <%= link_to "craigslist clone", root_path -%>
+            <%= link_to "craigslist clone", root_path, class: 'text-dark' %>
           </h3>
         </p>
 
-        <%= link_to "my account", new_account_session_path unless account_signed_in? %> <br/>
+        <%# <%= link_to "Create new post", new_post_path if controller.controller_name == "public" %>
+        <%= link_to "Create new post", new_post_path, class: "btn btn-success" unless is_auth? %>
 
         <%= render "categories/category_sidebar" if controller.controller_name == "categories" %>
-        <%= link_to "Create new post", new_post_path if controller.controller_name == "public" %>
 
         <% if is_home? %>
-          <div class="nav-pages">
+          <div class="nav-pages mt-5">
             <p><%= link_to "help, faqs, abuse, legal", faqs_path %></p>
             <p><%= link_to "avoid scams and fraud", scams_path %></p>
             <p><%= link_to "personal safety tips", safety_path %></p>
@@ -46,6 +51,7 @@
       </div>
       </div>
     </div>
+
 
   </body>
 </html>
