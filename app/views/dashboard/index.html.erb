@@ -1,0 +1,11 @@
+<h4>Your Posts: </h4>
+
+<p>
+<code><%= SecureRandom.uuid %></code>
+</p>
+
+<ul>
+<% @posts.each do |post| %>
+    <li><a href="<%= edit_post_path(post) %>"><%= post.title %></a></li>
+<% end %>
+</ul>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :accounts
+
   resources :posts, except: [:index]
   resources :categories, except: [:show]
   get "c/:url" => "categories#show", as: :show_category
@@ -17,4 +18,6 @@ Rails.application.routes.draw do
   # get "/dashboard" => "accounts#dashboard", as: :dashboard
 
   root to: "public#home"
+
+  get "/dashboard" => "dashboard#index"
 end
